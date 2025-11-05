@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>priyal Wealth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7182e7 0%, #2f0bcf 100%);
+            color: white;
+            padding: 0rem 0;
+            box-shadow: 0 4px 20px rgb(241, 244, 245);
+            top: 0;
+            z-index: 200;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            text-align: center;
+        }
+
+        .logo-text h1 {
+            font-size: 2rem;
+            color: #ffd89b;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #e8f4f8;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        .carousel {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide-content p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .carousel-btn {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background: white;
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .services {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .services h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+            border-color: #667eea;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #636e72;
+            line-height: 1.7;
+        }
+
+        .app-section {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .app-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .app-section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .app-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .app-link {
+            background: white;
+            padding: 18px 35px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #2d3436;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .app-link:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .calculators {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .calculators h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .calculators h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .calc-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .calc-tab {
+            padding: 14px 30px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #636e72;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .calc-tab:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .calc-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .calc-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .calc-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calc-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 1rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .calc-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .calc-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .result {
+            margin-top: 35px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            border: 2px solid #e9ecef;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result h3 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .result p {
+            margin: 12px 0;
+            font-size: 1.1rem;
+            color: #636e72;
+        }
+
+        .result-value {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .mf-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .mf-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .mf-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .mf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .mf-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .mf-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            border-color: #667eea;
+        }
+
+        .mf-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            background: white;
+            padding: 5px;
+        }
+
+        .mf-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .mf-card h4 {
+            color: #2d3436;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #ffd89b;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .footer-section p {
+            margin: 10px 0;
+            color: #e8f4f8;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: #ffd89b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.5);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 2rem;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .credentials {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .credentials p {
+            margin: 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+
+            .carousel {
+                height: 400px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+
+            .logo-img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-section {
+                gap: 6px;
+            }
+
+            .tagline {
+                font-size: 0.85rem;
+            }
+
+            .services h2, .calculators h2, .mf-section h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-text">
+                        <img src="logo-bg.png" alt="Asha Financial Shoppe Logo" style="width: 50%; height: 50%;">
+                        <h1>priyal wealth</h1>
+                        <p class="tagline">INVEST TODAY SECURE TOMORROW</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="carousel">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%), url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600') center/cover;">
+                <div class="slide-content">
+                    <h2>Welcome to Priyal Finserv</h2>
+                    <p>Your Trusted Partner for Wealth Creation</p>
+                    <a href="#services" class="carousel-btn">Explore Services</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.9) 0%, rgba(245, 87, 108, 0.9) 100%), url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1600') center/cover;">
+                <div class="slide-content">
+                    <h2>Expert Mutual Fund Solutions</h2>
+                    <p>AMFI Registered Distributor - ARN-139135</p>
+                    <a href="#calculators" class="carousel-btn">Try Calculators</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background: linear-gradient(135deg, rgba(79, 172, 254, 0.9) 0%, rgba(0, 242, 254, 0.9) 100%), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600') center/cover;">
+                <div class="slide-content">
+                    <h2>Insurance & Investment Advisory</h2>
+                    <p>IRDAI Registered - Secure Your Future Today</p>
+                    <a href="#contact" class="carousel-btn">Contact Us</a>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background: linear-gradient(135deg, rgba(67, 233, 123, 0.9) 0%, rgba(56, 249, 215, 0.9) 100%), url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600') center/cover;">
+                <div class="slide-content">
+                    <h2>Stock Market & IPO Investments</h2>
+                    <p>Grow Your Portfolio with Expert Guidance</p>
+                    <a href="https://wa.me/918235415800" class="carousel-btn" target="_blank">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-nav prev" onclick="moveCarousel(-1); event.stopPropagation();">â€¹</button>
+        <button class="carousel-nav next" onclick="moveCarousel(1); event.stopPropagation();">â€º</button>
+        <div class="carousel-indicators">
+            <span class="indicator active" onclick="goToSlide(0); event.stopPropagation();"></span>
+            <span class="indicator" onclick="goToSlide(1); event.stopPropagation();"></span>
+            <span class="indicator" onclick="goToSlide(2); event.stopPropagation();"></span>
+            <span class="indicator" onclick="goToSlide(3); event.stopPropagation();"></span>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">ðŸ“ˆ</div>
+                    <h3>Mutual Funds</h3>
+                    <p>AMFI Registered Distributor (ARN-139135). Expert fund selection and portfolio management tailored to your goals.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸ›¡ï¸</div>
+                    <h3>Insurance Advisory</h3>
+                    <p>IRDAI Registered Advisor. Comprehensive life and health insurance solutions for complete protection.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸ’¹</div>
+                    <h3>Stock Market</h3>
+                    <p>Equity trading, portfolio advisory, and in-depth market research services for informed decisions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸŽ¯</div>
+                    <h3>IPO Investment</h3>
+                    <p>Get access to latest IPOs with expert recommendations and application assistance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸ”“</div>
+                    <h3>Unlisted Stocks</h3>
+                    <p>Investment opportunities in pre-IPO and unlisted securities with high growth potential.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸŒ¾</div>
+                    <h3>Commodity Trading</h3>
+                    <p>Gold, Silver, Crude Oil and other commodity investments for portfolio diversification.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">ðŸ¦</div>
+                    <h3>LAS</h3>
+                    <p>Unlock Instant Liquidity with your Mutual Fund - get a loan without selling your investment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="container">
+            <h2>Download Our Mobile App</h2>
+            <p>Manage your investments anytime, anywhere with Money2Management</p>
+            <div class="app-links">
+                <a href="https://play.google.com/store/apps/details?id=com.M2M.Money2Managment" class="app-link" target="_blank">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="#32BBFF"/>
+                        <path d="M16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12Z" fill="#F4B400"/>
+                        <path d="M20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81Z" fill="#EB4132"/>
+                        <path d="M6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="#1E8E3E"/>
+                    </svg>
+                    <div style="text-align: left;">
+                        <small style="font-size: 0.75rem; display: block;">GET IT ON</small>
+                        <strong style="font-size: 1.1rem;">Google Play</strong>
+                    </div>
+                </a>
+                <a href="https://apps.apple.com/in/app/money2management/id1276988749" class="app-link" target="_blank">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M17.05 20.28C16.07 21.23 15.06 21.08 14.11 20.64C13.11 20.19 12.19 20.16 11.13 20.64C9.79 21.24 9.05 21.07 8.19 20.28C2.24 13.97 3.08 4.18 9.84 3.86C11.32 3.94 12.35 4.66 13.21 4.72C14.54 4.42 15.82 3.67 17.26 3.77C18.99 3.91 20.3 4.58 21.16 5.78C17.67 7.95 18.52 12.37 21.75 13.64C21.13 15.28 20.29 16.91 19.04 18.55C18.07 19.76 17.17 20.97 17.05 20.28ZM13.09 3.82C12.91 1.47 14.77 0 16.81 0.04C17.11 2.74 14.19 4.28 13.09 3.82Z" fill="#000000"/>
+                    </svg>
+                    <div style="text-align: left;">
+                        <small style="font-size: 0.75rem; display: block;">Download on the</small>
+                        <strong style="font-size: 1.1rem;">App Store</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculators" id="calculators">
+        <div class="container">
+            <h2>Financial Calculators</h2>
+            <div class="calc-tabs">
+                <button class="calc-tab active" onclick="showCalc('sip', this)">SIP Calculator</button>
+                <button class="calc-tab" onclick="showCalc('lumpsum', this)">Lumpsum Calculator</button>
+                <button class="calc-tab" onclick="showCalc('swp', this)">SWP Calculator</button>
+                <button class="calc-tab" onclick="showCalc('stp', this)">STP Calculator</button>
+            </div>
+
+            <div id="sip" class="calc-content active">
+                <form class="calc-form" onsubmit="calculateSIP(event)">
+                    <div class="form-group">
+                        <label>Monthly Investment (â‚¹)</label>
+                        <input type="number" id="sipAmount" required min="500" value="5000">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Return Rate (% p.a.)</label>
+                        <input type="number" id="sipRate" required min="1" max="30" step="0.1" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Time Period (Years)</label>
+                        <input type="number" id="sipYears" required min="1" max="40" value="10">
+                    </div>
+                    <button type="submit" class="calc-btn">Calculate</button>
+                    <div id="sipResult" class="result">
+                        <h3>Investment Summary</h3>
+                        <p>Total Investment: â‚¹<span id="sipInvested"></span></p>
+                        <p>Estimated Returns: â‚¹<span id="sipReturns"></span></p>
+                        <p class="result-value">â‚¹<span id="sipMaturity"></span></p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Total Maturity Value</p>
+                    </div>
+                </form>
+            </div>
+
+            <div id="lumpsum" class="calc-content">
+                <form class="calc-form" onsubmit="calculateLumpsum(event)">
+                    <div class="form-group">
+                        <label>Investment Amount (â‚¹)</label>
+                        <input type="number" id="lsAmount" required min="1000" value="100000">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Return Rate (% p.a.)</label>
+                        <input type="number" id="lsRate" required min="1" max="30" step="0.1" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Time Period (Years)</label>
+                        <input type="number" id="lsYears" required min="1" max="40" value="10">
+                    </div>
+                    <button type="submit" class="calc-btn">Calculate</button>
+                    <div id="lsResult" class="result">
+                        <h3>Investment Summary</h3>
+                        <p>Total Investment: â‚¹<span id="lsInvested"></span></p>
+                        <p>Estimated Returns: â‚¹<span id="lsReturns"></span></p>
+                        <p class="result-value">â‚¹<span id="lsMaturity"></span></p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Total Maturity Value</p>
+                    </div>
+                </form>
+            </div>
+
+            <div id="swp" class="calc-content">
+                <form class="calc-form" onsubmit="calculateSWP(event)">
+                    <div class="form-group">
+                        <label>Total Investment (â‚¹)</label>
+                        <input type="number" id="swpAmount" required min="10000" value="500000">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Withdrawal (â‚¹)</label>
+                        <input type="number" id="swpWithdrawal" required min="1000" value="10000">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Return Rate (% p.a.)</label>
+                        <input type="number" id="swpRate" required min="1" max="30" step="0.1" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Time Period (Years)</label>
+                        <input type="number" id="swpYears" required min="1" max="40" value="10">
+                    </div>
+                    <button type="submit" class="calc-btn">Calculate</button>
+                    <div id="swpResult" class="result">
+                        <h3>Withdrawal Summary</h3>
+                        <p>Initial Investment: â‚¹<span id="swpInvested"></span></p>
+                        <p>Total Withdrawal: â‚¹<span id="swpTotal"></span></p>
+                        <p class="result-value">â‚¹<span id="swpFinal"></span></p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Final Remaining Value</p>
+                    </div>
+                </form>
+            </div>
+
+            <div id="stp" class="calc-content">
+                <form class="calc-form" onsubmit="calculateSTP(event)">
+                    <div class="form-group">
+                        <label>Total Investment (â‚¹)</label>
+                        <input type="number" id="stpAmount" required min="10000" value="500000">
+                    </div>
+                    <div class="form-group">
+                        <label>Monthly Transfer (â‚¹)</label>
+                        <input type="number" id="stpTransfer" required min="1000" value="10000">
+                    </div>
+                    <div class="form-group">
+                        <label>Source Fund Return (% p.a.)</label>
+                        <input type="number" id="stpSourceRate" required min="1" max="30" step="0.1" value="7">
+                    </div>
+                    <div class="form-group">
+                        <label>Target Fund Return (% p.a.)</label>
+                        <input type="number" id="stpTargetRate" required min="1" max="30" step="0.1" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Time Period (Years)</label>
+                        <input type="number" id="stpYears" required min="1" max="40" value="5">
+                    </div>
+                    <button type="submit" class="calc-btn">Calculate</button>
+                    <div id="stpResult" class="result">
+                        <h3>Transfer Summary</h3>
+                        <p>Initial Investment: â‚¹<span id="stpInvested"></span></p>
+                        <p>Source Fund Balance: â‚¹<span id="stpSource"></span></p>
+                        <p class="result-value">â‚¹<span id="stpTarget"></span></p>
+                        <p style="font-size: 0.9rem; margin-top: 10px;">Target Fund Value</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="mf-section">
+        <div class="container">
+            <h2>Top Mutual Fund Houses</h2>
+            <div class="mf-grid">
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.sbimf.com/" target="_blank">
+                        <img src="https://www.sbimf.com/Content/Images/black.svg" alt="SBI MF" onerror="this.onerror=null; this.parentElement.innerHTML='SBI'; this.parentElement.style.background='linear-gradient(135deg, #0066cc, #004999)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>SBI Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.hdfcfund.com/" target="_blank">
+                        <img src="https://www.hdfcfund.com/nextjs/images/Header/Hdfc-Logo-Main.svg" alt="HDFC MF" onerror="this.onerror=null; this.parentElement.innerHTML='HDFC'; this.parentElement.style.background='linear-gradient(135deg, #d32f2f, #b71c1c)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>HDFC Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.icicipruamc.com/" target="_blank">
+                        <img src="https://www.icicipruamc.com/static/media/logo.59b7c460.jpg" alt="ICICI MF" onerror="this.onerror=null; this.parentElement.innerHTML='ICICI'; this.parentElement.style.background='linear-gradient(135deg, #ff6f00, #e65100)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>ICICI Prudential</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.axismf.com/" target="_blank">
+                        <img src="https://cdn.zeebiz.com/sites/default/files/2021/11/16/166189-axis.jpg" alt="Axis MF" onerror="this.onerror=null; this.parentElement.innerHTML='Axis'; this.parentElement.style.background='linear-gradient(135deg, #1976d2, #1565c0)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>Axis Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.kotakmf.com/" target="_blank">
+                        <img src="https://www.kotakmf.com/assets/landing/light/kotak-mf-logo.svg" alt="Kotak MF" onerror="this.onerror=null; this.parentElement.innerHTML='Kotak'; this.parentElement.style.background='linear-gradient(135deg, #c62828, #b71c1c)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>Kotak Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.nipponindiamf.com/" target="_blank">
+                        <img src="https://mf.nipponindiaim.com/SiteCollectionImages/nipponindia-mutual-fund-logo.webp?v=1" alt="Nippon MF" onerror="this.onerror=null; this.parentElement.innerHTML='Nippon'; this.parentElement.style.background='linear-gradient(135deg, #7b1fa2, #6a1b9a)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>Nippon India MF</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.utimf.com/" target="_blank">
+                        <img src="https://www.utimf.com/assets/images/logo.webp" alt="UTI MF" onerror="this.onerror=null; this.parentElement.innerHTML='UTI'; this.parentElement.style.background='linear-gradient(135deg, #00897b, #00796b)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>UTI Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.adityabirlacapital.com/our-businesses/mutual-fund" target="_blank">
+                        <img src="https://mutualfund.adityabirlacapital.com/-/media/192x65.png" alt="Aditya Birla MF" onerror="this.onerror=null; this.parentElement.innerHTML='ABSL'; this.parentElement.style.background='linear-gradient(135deg, #f57c00, #ef6c00)'; this.parentElement.style.color='white';">
+                        </a>    
+                    </div>
+                    <h4>Aditya Birla SL</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.dspim.com/" target="_blank">
+                        <img src="https://www.dspim.com/media/pages/header-new-homepage/bd7ac19aa3-1757771825/logo-dsp.svg" alt="DSP MF" onerror="this.onerror=null; this.parentElement.innerHTML='DSP'; this.parentElement.style.background='linear-gradient(135deg, #388e3c, #2e7d32)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>DSP Mutual Fund</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.miraeassetmf.co.in/" target="_blank">
+                        <img src="https://www.miraeassetmf.co.in/images/default-source/default-album/mirae-asset-mutual-fund-logo.png" alt="Mirae MF" onerror="this.onerror=null; this.parentElement.innerHTML='Mirae'; this.parentElement.style.background='linear-gradient(135deg, #e64a19, #d84315)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>Mirae Asset</h4>
+                </div>
+                <div class="mf-card">
+                    <div class="mf-logo">
+                        <a href="https://www.tatamutualfund.com/" target="_blank">
+                        <img src="https://www.tatamutualfund.com/images/logo-lg.avif" alt="Tata MF" onerror="this.onerror=null; this.parentElement.innerHTML='Tata'; this.parentElement.style.background='linear-gradient(135deg, #512da8, #4527a0)'; this.parentElement.style.color='white';">
+                        </a>
+                    </div>
+                    <h4>Tata Mutual Fund</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Address</h3>
+                    <p>Yaddupatti Lane</p>
+                    <p>Banaras Bank Chowk</p>
+                    <p>Muzaffarpur, Bihar</p>
+                    <p>842001</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Phone no: <a href="tel:+919576459523">+91 9576459523</a></p>
+                    <p>Email: <a href="mailto:gupta.finserv08@gmail.com">gupta.finserv08@gmail.com</a></p>
+                    <p>WhatsApp: <a href="https://wa.me/919576459523" target="_blank">WhatsApp Us</a></p>
+                  </div>
+                  
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <p>Mutual Funds Distribution</p>
+                    <p>Insurance Advisory</p>
+                    <p>Stock Market Trading</p>
+                    <p>IPO & Unlisted Stocks</p>
+                    <p>Commodity Trading</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#services">Services</a></p>
+                    <p><a href="#calculators">Calculators</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                    <p><a href="https://play.google.com/store/apps/details?id=com.M2M.Money2Managment" target="_blank">Download App</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Additional Links</h3>
+                    <p>
+                    <a href="https://www.nseindia.com/" target="_blank">NSE</a> |
+                    <a href="https://www.bseindia.com/" target="_blank">BSE</a> |
+                    <a href="https://www.sebi.gov.in/" target="_blank">SEBI</a> |
+                    <a href="https://irdai.gov.in/" target="_blank">IRDAI</a> |
+                    <a href="https://www.mcxindia.com/" target="_blank">MCX</a> |
+                    <a href="https://bsestarmf.in/" target="_blank">BSE Star</a> |
+                    <a href="https://www.mfcentral.com/" target="_blank">MF Central</a>
+                    </p>
+                </div>
+                 
+            </div>
+            <div class="credentials">
+                <p><strong>AMFI Registration:</strong> ARN-147618</p>
+                <p><strong>IRDAI Registered Insurance Advisor</strong></p>
+                <p style="margin-top: 20px; font-size: 0.95rem; opacity: 0.9;">Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing. Past performance is not indicative of future returns.</p>
+            </div>
+            <p style="margin-top: 40px; text-align: center; opacity: 0.8;">&copy; 2025 Priyal Finserv. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918235415800" class="whatsapp-float" target="_blank">
+        ðŸ’¬
+    </a>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        let autoSlideInterval;
+
+        function showCalc(calcType, clickedButton) {
+            // Hide all results first
+            document.querySelectorAll('.result').forEach(result => {
+                result.classList.remove('show');
+            });
+            
+            document.querySelectorAll('.calc-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.calc-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(calcType).classList.add('active');
+            
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            }
+        }
+
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+            
+            resetAutoSlide();
+        }
+
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 5000);
+        }
+
+        autoSlideInterval = setInterval(autoSlide, 5000);
+
+        function calculateSIP(e) {
+            e.preventDefault();
+            const P = parseFloat(document.getElementById('sipAmount').value);
+            const annualRate = parseFloat(document.getElementById('sipRate').value);
+            const years = parseFloat(document.getElementById('sipYears').value);
+            
+            const r = annualRate / 12 / 100;
+            const n = years * 12;
+            
+            const M = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+            const invested = P * n;
+            const returns = M - invested;
+            
+            document.getElementById('sipInvested').textContent = invested.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('sipReturns').textContent = returns.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('sipMaturity').textContent = M.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            const resultDiv = document.getElementById('sipResult');
+            resultDiv.style.display = 'block';
+            resultDiv.classList.add('show');
+        }
+
+        function calculateLumpsum(e) {
+            e.preventDefault();
+            const P = parseFloat(document.getElementById('lsAmount').value);
+            const r = parseFloat(document.getElementById('lsRate').value) / 100;
+            const t = parseFloat(document.getElementById('lsYears').value);
+            
+            const A = P * Math.pow(1 + r, t);
+            const returns = A - P;
+            
+            document.getElementById('lsInvested').textContent = P.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('lsReturns').textContent = returns.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('lsMaturity').textContent = A.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            const resultDiv = document.getElementById('lsResult');
+            resultDiv.style.display = 'block';
+            resultDiv.classList.add('show');
+        }
+
+        function calculateSWP(e) {
+            e.preventDefault();
+            const principal = parseFloat(document.getElementById('swpAmount').value);
+            const withdrawal = parseFloat(document.getElementById('swpWithdrawal').value);
+            const annualRate = parseFloat(document.getElementById('swpRate').value);
+            const years = parseFloat(document.getElementById('swpYears').value);
+            
+            const monthlyRate = annualRate / 12 / 100;
+            const months = years * 12;
+            
+            let balance = principal;
+            for (let i = 0; i < months; i++) {
+                balance = balance * (1 + monthlyRate) - withdrawal;
+                if (balance < 0) {
+                    balance = 0;
+                    break;
+                }
+            }
+            
+            const totalWithdrawal = withdrawal * months;
+            
+            document.getElementById('swpInvested').textContent = principal.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('swpTotal').textContent = totalWithdrawal.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('swpFinal').textContent = balance.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            const resultDiv = document.getElementById('swpResult');
+            resultDiv.style.display = 'block';
+            resultDiv.classList.add('show');
+        }
+
+        function calculateSTP(e) {
+            e.preventDefault();
+            const principal = parseFloat(document.getElementById('stpAmount').value);
+            const transfer = parseFloat(document.getElementById('stpTransfer').value);
+            const sourceRate = parseFloat(document.getElementById('stpSourceRate').value) / 12 / 100;
+            const targetRate = parseFloat(document.getElementById('stpTargetRate').value) / 12 / 100;
+            const years = parseFloat(document.getElementById('stpYears').value);
+            const months = years * 12;
+            
+            let sourceBalance = principal;
+            let targetBalance = 0;
+            
+            for (let i = 0; i < months; i++) {
+                sourceBalance = sourceBalance * (1 + sourceRate);
+                
+                if (sourceBalance >= transfer) {
+                    sourceBalance -= transfer;
+                    targetBalance = (targetBalance + transfer) * (1 + targetRate);
+                } else {
+                    targetBalance = (targetBalance + sourceBalance) * (1 + targetRate);
+                    sourceBalance = 0;
+                }
+            }
+            
+            document.getElementById('stpInvested').textContent = principal.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('stpSource').textContent = sourceBalance.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('stpTarget').textContent = targetBalance.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            
+            const resultDiv = document.getElementById('stpResult');
+            resultDiv.style.display = 'block';
+            resultDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>
